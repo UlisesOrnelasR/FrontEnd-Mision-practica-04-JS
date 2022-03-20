@@ -6,6 +6,7 @@ const pokeImgContainer = document.querySelector('[data-poke-img-container]');
 const pokeId = document.querySelector('[data-poke-id]');
 const pokeTypes = document.querySelector('[data-poke-types]');
 const pokeStats = document.querySelector('[data-poke-stats]');
+const pokeMoves = document.querySelector('[data-poke-moves]');
 
 //Diccionario mapeando tipo de pokemon a un color
 const typeColors = {
@@ -39,7 +40,7 @@ const searchPokemon = event => {
 }
 
 const renderPokemonData = data => {
-    const sprite =  data.sprites.front_default;
+    const sprite =  data.sprites.other.home.front_default;
     const { stats, types } = data;
 
     pokeName.textContent = data.name;
@@ -48,13 +49,14 @@ const renderPokemonData = data => {
     setCardColor(types);
     renderPokemonTypes(types);
     renderPokemonStats(stats);
+    
 
 }
 
 const setCardColor = types => {
     const colorOne = typeColors[types[0].type.name];
     const colorTwo = types[1] ? typeColors[types[1].type.name] : typeColors.default;
-    pokeImg.style.background = `radial-gradient(${colorTwo} 33%, ${colorOne} 33%)`;
+    pokeImg.style.background = `radial-gradient(${colorTwo} 13%, ${colorOne} 13%)`;
     pokeImg.style.backgroundSize = '10px 10px';
 }
 
@@ -85,6 +87,8 @@ const renderPokemonStats = stats => {
     });
 }
 
+
+
 const renderNotFound = () => {
     pokeName.textContent = 'No encontrado';
     pokeImg.setAttribute('scr', './resources/pikachunotfound.png');
@@ -93,3 +97,5 @@ const renderNotFound = () => {
     pokeStats.innerHTML = '';
     pokeId.textContent = '';
 }
+
+
